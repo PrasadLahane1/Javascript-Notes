@@ -35,6 +35,413 @@ console.log(true);
 console.log(false);
 
 
+Variables
+---------
+Variables, the brick from which we build programs. You learnt a little about what variables are in the previous lesson, so let's get straight into them!
+
+There are three ways to declare a variable in JavaScript, each being slightly different. Declaring a variable looks like this:
+
+keyword variablename = data;
+
+The three keywords you can use are var, let and const.
+
+Each acts slightly differently, let declares a local variable and const declares a local constant (a variable that cannot be changed, attempting to change a constant once declared will result in an error). let was introduced to handle inconsistancies with var, generally it is better practice to use let or const rather than var.
+
+In JavaScript (and most programming languages), there is a magical (not really) thing called scope. Scope determines what code has access to which variables, this will become very important later. The basic rule is that a local variable can only be accessed from inside the same pair of curly braces/brackets ({}).
+
+Let's look at how we would declare or define (the programming terminology for creating or making a variable) a variable with each of these keywords:
+
+var bool = true;
+let str = "Hello world!";
+const pi = 3.14159;
+
+Variable names can include any alphanumeric character (a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O,P, Q, R, S, T, U, V, W, X, Y, Z, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, _, $). A variable's name cannot start with a number. Variable names are also case sensitive in JavaScript, meaning a variable declared as ABC cannot be accessed using abc.
+
+We can access a variable using the variable's name. We could put a variable's name inside console.log, and the value that variable stores would be printed to the console.
+
+console.log(bool); // -> true
+console.log(str);  // -> "Hello world!"
+console.log(pi);   // -> 3.14159
+
+You can change the value of a variable you've defined (that isn't a constant declared with const) the same way you declare a variable, just without the keyword.
+
+bool = false;
+str = "The quick brown fox.";
+console.log(bool); // -> false
+console.log(str);  // -> "The quick brown fox"
+
+Operators
+Operators are very important, they allow us to change our variables.
+
+Here is a table of the basic operators and what they do:
+
+Operator	Action
+=	Assigns a new value to a variable. variable = 1 → 1
++	Adds two numbers together: 1 + 1 → 2. OR. Concatenates (joins) two strings together: "ABC" + "DEF" → "ABCDEF".
+-	Subtracts the number on the right hand side of the operator from the number on the left hand side of the operator: 3 - 2 → 1.
+*	Multiplies two numbers together: 3 * 4 → 12.
+/	Divides the number on the left hand side of the operator by the number on the right hand side of the operator: 12 / 4 → 3.
+%	Returns the remainder when the number on the left hand side of the operator is divided by the number on the right hand side of the operator: 5 % 2 → 1
+**	Multiplies the number on the left hand side of the operator by itself as many times as the number on the righ hand side of the operator: 4 ** 2 -> 16. (Exponentiation.)
+let num = 4;   // -> 4
+num = num + 6; // -> 10
+num = num / 5; // -> 2
+num = num * 2; // -> 4
+
+We can combine operators and the assignment operator (=) to get some shortcut assignment operators. These assignment operators enable us to write shorter, more readable code.
+
+We can simplify the above code to this:
+
+let num = 4; // -> 4
+num += 6;    // -> 10
+num /= 5;    // -> 2
+num *= 2;    // -> 4
+
+We can even simplify this to one line:
+
+let num = 4 + 6 / 5 * 2; // -> 6.4
+
+Huh? We got 6.4? How'd that happen? It's time to talk about operator precedence.
+
+In JavaScript (and most programming languages), certain operators have precedence (they are read by the computer as more important, and hence applied first). Usually operator precendence works the same way it would in regular maths (BIDMAS or BIMDAS), in other words multiplication and division are done before addition and subtraction. Also like in maths, we can add parenthesis/brackets (()) to make specific groups more important.
+
+Using parenthesis, we can get the number we expected previously:
+
+let num = (4 + 6) / 5 * 2; // -> 4
+
+Open Lesson 2.js in the Lessons folder in the file hierarchy and try making your own variables to practice what you've learnt. Remember, when you're ready to test your code, press run and in the webview click the 'Lesson 2' tab.
+
+Done? Don't stop now! Keep going!
+
+
+Logical expression
+------------------
+Logic
+Alright! Now we know about variables, it's time to start doing stuff with the data we have.
+
+The simplest, and arguably the most important, statement in JavaScript is the if statement. An if statement is constructed like this:
+
+if (condition) {
+	// do something in here
+}
+
+Notice we need a condition in our if statement. Our condition is a boolean, a true or false value. To get this value we need to use comparison operators. Yep, there are more operators we need to learn!
+
+Operator	Action
+==	Checks whether the data on the left is the same as the data on the right. If the data is not the same, this operator will try coercing the data on the right to the same data type as the data on the left (1 == 1 → true and 1 == "1" → true).
+===	Checks whether the data on the left is the same as the data on the right. This operator compares type. Also note that objects will not be equal, even if all properties and there values are the same (unless you are comparing two references to the same object). (This is not relevant for now, however will be important later.) 1 === 1 → true and 1 === "1" → false
+!=	Checks whether the data on the left is not the same as the data on the right. If the data is not the same, this operator will try converting the data to different types to see if they are the same (1 != 2 → true but 1 != "1" → false).
+!==	Checks whether the data on the left is not the same as the data on the right. This operator compares type. (1 !== 2 → true and 1 !== "1" → true)
+>	Checks whether the data on the left is greater than the data on the right. (1 > 2 → false whereas 2 > 1 → true)
+<	Checks whether the data on the left is less than the data on the right. (1 < 2 → true whereas 2 < 1 → false)
+>=	Checks whether the data on the left is greater than or equal to the data on the right. (1 > 1 → false whereas 1 >= 1 → true)
+<=	Checks whether the data on the left is less than or equal to the data on the right. (1 < 1 → false whereas 1 <= 1 → true)
+!	Inverts a boolean value (turns true to false and false to true). (!false → true and !true → false)
+&&	Checks whether the data on the left and the data on the right is true. (true && true → true but true && false → false and false && false → false)
+||	Checks whether the data on the left or the data on the right is true. (true || true → true and true || false → true but false || false → false)
+JavaScript has what is known as type coercion. This means that JavaScript sometimes tries to automatically convert values to the type expected.
+
+For example, you can use numbers and strings in an if statement because they are coerced to booleans.
+
+All values/data in JavaScript can be truthy or falsy (meaning when coerced to a boolean, it will be true if truthy or false if falsy).
+
+All numbers except 0 are truthy (0 is falsy).
+
+All strings except an empty string ("" or '' or ``) are truthy ("" and '' and `` are falsy).
+
+All objects apart from null (occasionally used to signify there is no value intentionally), NaN ('Not a Number', can be the result of operations with numbers and non-numeric values) and undefined (the default value of variables before you assign them value, for example let variable; would result in variable being undefined) are truthy (null, NaN and undefined are falsy).
+
+Remember the ! operator? The ! operator will actually coerce values into a boolean first based on whether it is truthy or falsy.
+
+One last thing before we get to the logic. Generally, programs process data input by a user, so we're going to want to get some simple user input.
+
+In JavaScript hosted on the web, we have prompt built-in. We use parenthesis/brackets (()) to call the prompt function. This will display the user a box asking them for some input. We can add a string inside the parenthesis and this string will be displayed when asking for the input.
+
+let input = prompt("Give me some input (please)!");
+
+Now let's get back to the if statement.
+
+Say we want to check if a user has enough money to pay for an item.
+
+// get the user to tell us how much money they have
+let money = prompt("How much money do you have");
+// store how much the item costs
+let itemCost = 25;
+// now we can use an if statement to check if money is greater than or equal to itemCost to see if the user can afford it
+if (money >= itemCost) {
+	// tell the user they can afford the item
+	console.log("You can afford the item!");
+}
+
+But what if the user can't afford the item? That's why we have the else statement. else joins on the end of an if statement and has no condition, the code inside the if statement is executed if the condition in the if statement is true, otherwise, if there's an else statement, the code in the else statement is executed.
+
+if (money >= itemCost) {
+	console.log("You can afford the item!");
+} else { // <- else statement!
+	// tell the user they can't afford the item
+	console.log("Oh no! You don't have enough money to purchase this...");
+}
+
+Alright, but what if we want to tell the user they almost have enough money? How could we do that? Well, we could add an if statement inside of the else statement... but that's just messy. Luckily JavaScript is (and most programming languages are) prepared for this. We also have the else if statement!
+
+The else if statement is exactly like the if statement, however it must come after an if or another else if statement. (Note that there can only ever be one else statement in an if else if else 'chain' and it must be at the end of the chain.)
+
+if (money >= itemCost) {
+	console.log("You can afford the item!");
+} else if (money - itemCost >= -5) { // <- else if statement!
+	// tell the user they can almost afford the item
+	console.log("Oh no! You're 5 dollars or less away from being able to afford this item!");
+} else {
+	console.log("Oh no! You don't have enough money to purchase this...");
+}
+
+Now, we can also shorten if, else if, else chains by removing the curly brackets ({}) and only having one line of code inside the statemenet:
+
+if (money >= itemCost)
+	console.log("You can afford the item!");
+else if (money - itemCost >= -5)
+	console.log("Oh no! You're 5 dollars or less away from being able to afford this item!");
+else
+	console.log("Oh no! You don't have enough money to purchase this...");
+
+OR
+
+if (money >= itemCost) console.log("You can afford the item!");
+else if (money - itemCost >= -5) console.log("Oh no! You're 5 dollars or less away from being able to afford this item!");
+else console.log("Oh no! You don't have enough money to purchase this...");
+
+We can even further shorten this with the ternary operator (named so because it is the only operator that takes three arguments).
+
+The ternary operator takes a condition (parenthesis (()) not required), followed by a quetsion mark (?), followed by what should be returned if the condition is true, followed by a colon (:), followed by what should be returned if the condition is false.
+
+So this:
+
+if (true) {
+	console.log("True");
+} else {
+	console.log("False");
+}
+
+Can be rewritten as this:
+
+console.log(true ? "True" : "False");
+
+The if statement is the most essential, basic, statment to be aware of, but what if we have lots and lots of conditions? Well, in that case, we might be better of using the switch statement.
+
+The switch statement looks like this:
+
+switch (data) {
+	case possibleValue1:
+		break;
+	case possibleValue2:
+		break;
+	case possibleValue3:
+		break;
+	// etc
+	default:
+		break;
+}
+
+Essentially, we put in some data, and then we put in the different possible values of this data (note that these are not conditions, they are, essentialy, equality checks). We use the case keyword to signify a case, we follow this by the possible value, then a colon (:). We can include the default case cover any other possibilites that we didn't provide a case for. We use break at the end of the statement to signify that we should exit the switch statement. (If you do not include break, the statement will continue running all code until the next break statement. This can be used to create some more complex conditions.)
+
+// ask the user which to enter the current day using a number from
+// 0 to 6, with 0 representing Sunday (it doesn't matter what number
+// represents what day, that's just my personal preference.)
+let day = prompt("Enter the day of the week using a number (0 is Sunday, 6 is Saturday)");
+// there are a number of ways we can convert day to a number, one is
+// using the built-in parseInt function which will convert the string
+// into a number
+day = parseInt(day);
+console.log("Today is:");
+switch (day) {
+	case 0:
+		console.log("Sunday");
+		break;
+	case 1:
+		console.log("Monday");
+		break;
+	case 2:
+		console.log("Tuesday");
+		break;
+	case 3:
+		console.log("Wednesday");
+		break;
+	case 4:
+		console.log("Thursday");
+		break;
+	case 5:
+		console.log("Friday");
+		break;
+	case 6:
+		console.log("Saturday");
+		break;
+	default:
+		console.log("Invalid number...");
+		break;
+}
+
+And there you have it, that's the basics of logic.
+
+To practice what you've learnt, go to Lesson 3.js in the Lessons folder in the file hierarchy. Once you're finished, press run, then in the webview press 'Lesson 3' to see the result.
+
+Done? Well? What are you waiting for? Keep going! You've almost finished learning the basics of JavaScript!
+
+Loops
+-----
+Loops
+Alright, now there's another important aspect of programming we need to learn about. Often, programming is very repetitive, so we need to be able to repeat code with very little changes. To do this, we use loops. Loops run blocks of code over and over again until a condition is met.
+
+Let's look at the simplest loop, the while loop. The while loop is almost the same as the basic if statement, except that it checks if the condition is true, and if so, it repeats the code within it.
+
+while (condition) {
+	// some code
+}
+
+One thing we need to be careful of is (unintentional/uncontrolled) infinite loops. An infinite loop is a loop that never ends because the condition is always true. Infinite loops can cause our programs to crash.
+
+// infinite loop
+while (true) {
+	// the condition never changes so this wil run
+	// forever (or until we stop running the program)
+}
+
+Let's create a countdown from 10 to 0.
+
+let num = 10; // start at ten
+while (num >= 0) { // repeat until num is no longer greater than or equal to 0
+	console.log(num); // print the number
+	num--; // reduce the number by one
+}
+
+You'll notice something we haven't learnt about in the above example: --. There are two more operators that we should quickly look at becuase they are quite useful when working with loops. These operators are ++ and --. The former adds 1 to a variable containing a number, the latter subtracts 1 from a variable containing a number. The operator can either be infront or behind the variable, however this results in slightly different behaviour which we will learn about later.
+
+The next loop we'll look at is the do while loop. This loop works much the same as a while loop. It only really has two differences, the most important being that the condition is checked after the code within is run, not before. (The second being that the structure is a little different.)
+
+do {
+	// some code
+} while (condition);
+
+To illustrate the difference between do while and while:
+
+while (false) {
+	console.log(true);
+}
+
+Results in no output. Whereas:
+
+do {
+	console.log(true)
+} while (false);
+
+Results in true being output once.
+
+The last loop we will look at is the for loop. This loop is perfect for iterating (looping) through arrays. Here is what our for loop looks like:
+
+for (initialiser; condition; increment) {
+	// some code
+}
+
+At first glance, it's more complicated than our other loops, however, it really isn't. The for loop has three parts: the initialiser where any variables we need for the loop are declared, the condition which is the same as in other loops and the increment which is where we change our variables. These parts are separated by semicolons (;).
+
+Instead of using a while loop for our countdown, we can use a for loop which makes our code even simpler:
+
+// for (create a variable named i and assign 10 to it; keep looping until i is less than 0; after each loop subtract one from i)
+for (let i = 10; i >= 0; i--) {
+	console.log(i);
+}
+
+We can even create multiple variables in a for loop by separating each one with a comma. We can even skip parts of the statement by just adding a semicolon (;):
+
+for (let str = "Hello world!", num = 123.456, bool = true;/*skip the condition*/;/*skip the increment*/) {
+}
+
+But there's also two variants of the for loop. These are the for of loop and the for each loop. Both are useful for looping through arrays (which we haven't looked at much yet).
+
+Here's what these loops look like:
+
+for (initialiser of iterable) { }
+for (initialiser in iterable) { }
+
+The for of loop will loop through each element/value/item in an iterable object (like an array). The for in loop will loop through each property in an iterable object (like an array).
+
+Personally, I think it's easier to understand these loops through seeing them in use:
+
+const arr = [ "a", "b", "c", "d", "e" ];
+for (const item of arr) {
+	console.log(item);
+}
+
+Outputs:
+
+a
+b
+c
+d
+e
+
+These are the items contained within the array.
+
+Whereas:
+
+const arr = [ "a", "b", "c", "d", "e" ];
+for (const item in arr) {
+	console.log(item);
+}
+
+Outputs:
+
+0
+1
+2
+3
+4
+
+These are the indexes of each item contained within the array.
+
+While we're on the topic of arrays, let's quickly look at some basic ways of manipulating them:
+
+const array = [ "abc", 123, true, "Hello world!", 123.456 ]
+
+We can get an item from an array using its index (position in the array, starting from 0):
+
+array[0]; // -> "abc"
+array[3] // -> "Hello world!"
+
+We can add an item to the end of an array using the push method:
+
+array.push(item);
+array.push([ 1, 2, 3 ]); // -> [ 1, 2, 3 ]
+// array; // -> [ "abc", 123, true, "Hello world!", 123.456, [ 1, 2, 3 ] ]
+// this is called a nested array (an array within an array)
+
+We can check the length of an array using the length property:
+
+array.length; // -> 6
+
+We can remove and get the last item in the array using the pop method:
+
+array.pop(); // -> [ 1, 2, 3 ]
+// array; // -> [ "abc", 123, true, "Hello world!", 123.456 ]
+
+We can add an item to the start of an array using the unshift method:
+
+array.unshift([ 1, 2, 3 ]); // -> [ 1, 2, 3 ]
+// array; // -> [ [ 1, 2, 3 ], "abc", 123, true, "Hello world!", 123.456 ]
+
+We can remove an item from the start of an array using the shift method:
+
+array.shift(); // -> [ 1, 2, 3 ]
+// array; // -> [ "abc", 123, true, "Hello world!", 123.456 ]
+
+Scope reminder, remember when we talked about that? If we define a variable within one of these loops, it will only exist inside the loop.
+
+And that's it! You've now learnt the basics of loops!
+
+To practice what you've learnt, go to Lesson 4.js in the Lessons folder in the file hierarchy. Once you're finished, press run, then in the webview press 'Lesson 4' to see the result.
+
+Finished? Onwards! To the last lesson!
+
+
 Functions
 ---------
 A function is like a shortcut to run a specific block of code based on some parameters (literally).
@@ -45,7 +452,51 @@ function function_name() {
 	// some code
 }
 
+Any valid variable name is also a valid function name (Refer to lesson 2 if you need a refresher on what valid variable names are).
 
+Then, to run the function, all we do is use the function name followed by a pair of parenthesis (()) and a semicolon (;).
+
+function_name();
+
+Often we want to use data that we get/generate/create within a function. To pass this data out from the function, we use the return keyword followed by the data we want to return. We can only return once from a function, once the return keyword is run, the function will be exited.
+
+function twoPlusThree() {
+	return 2 + 3;
+}
+
+Then to access the data, we simply call the function the same way we did above:
+
+twoPlusThree(); // -> 5
+
+We can assign this data directly to a variable:
+
+const five = twoPlusThree(); // -> 5
+
+Now let's take this to the next level, sometimes we also want to pass some data into the function for it to work with. This is when we use parameters. Parameters are like local variables only defined within the function. We add parameters to the function between the parenthesis. We separate parameters with commas.
+
+// we add our parameters between the parenthesis (I only named them x and y out of personal preference)
+function add(x, y) {
+	return x + y;
+}
+add(2, 3); // -> 5
+
+But what if we don't neccessarily now how many parameters we will receive? Well, there's a solution for this: the spread operator.
+
+Essentially, we put three fullstops (.) before our last parameter in the function definition, and this will result in any extra parameters being converted into an array and passed in as the last parameter.
+
+// we get 
+function add(x, y, ...numbers) {
+	// add x and y together
+	let sum = x + y;
+	// use a for loop to loop through each extra parameter
+	for (let i = 0; i < numbers.length; i++) {
+		// add the extra parameter to the sum
+		sum += numbers[i];
+	}
+	// return the sum
+	return sum;
+}
+add(1, 2, 3, 4, 5, 6, 7, 8, 9); // -> 45
 
 
 
